@@ -1,10 +1,19 @@
-
 <app-header></app-header>
 
 <div class="container-fluid modal-contentt">
+  <!-- Search bar -->
   <div class="container pt-4">
     <div class="row">
-      <div class="col-lg-4 mt-4" *ngFor="let movie of getPaginatedMovies(); let i = index">
+      <div class="col-lg-12">
+        <input class="form-control" type="text" placeholder="Search by title or category" [(ngModel)]="searchQuery">
+      </div>
+    </div>
+  </div>
+
+  <!-- Display filtered movies -->
+  <div class="container pt-4">
+    <div class="row">
+      <div class="col-lg-4 mt-4" *ngFor="let movie of filteredMovies(); let i = index">
         <div class="card">
           <img [src]="'/assets/film' + (i % 15 + 1) + '.jpg'" class="card-img-top mx-auto" alt="Movie Photo">
           <div class="card-body">
@@ -16,15 +25,16 @@
         </div>
       </div>
     </div>
-    <!-- Pagination -->
-    <div class="row justify-content-center mt-4">
-      <div class="col-auto">
-        <ul class="pagination">
-          <li class="page-item" *ngFor="let pageNumber of totalPages" [class.active]="pageNumber === currentPage">
-            <a class="page-link" href="#" (click)="onPageChange(pageNumber)">{{ pageNumber }}</a>
-          </li>
-        </ul>
-      </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="row justify-content-center mt-4">
+    <div class="col-auto">
+      <ul class="pagination">
+        <li class="page-item" *ngFor="let pageNumber of totalPages" [class.active]="pageNumber === currentPage">
+          <a class="page-link" href="#" (click)="onPageChange(pageNumber)">{{ pageNumber }}</a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

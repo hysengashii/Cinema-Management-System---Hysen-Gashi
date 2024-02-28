@@ -13,13 +13,14 @@ export class HomeComponent implements OnInit {
   categories: string[] = [];
   currentPage = 1;
   moviesPerPage = 6;
+  searchQuery: string = '';
 
   constructor(private homeService: HomeService) {}
 
   ngOnInit(): void {
     this.loadMovies();
     this.loadCategories();
-    this.currentPage = +(localStorage.getItem('currentPage') || '1'); 
+    this.currentPage = +(localStorage.getItem('currentPage') || '1');
   }
 
   loadMovies(): void {
@@ -44,6 +45,14 @@ export class HomeComponent implements OnInit {
   getPaginatedMovies(): any[] {
     const startIndex = (this.currentPage - 1) * this.moviesPerPage;
     return this.movies.slice(startIndex, startIndex + this.moviesPerPage);
+  }
+
+  filteredMovies(): any[] {
+    if (!this.searchQuery) return this.getPaginatedMovies();
+    const query = this.searchQuery.toLowerCase().trim();
+    return this.movies.filter(movie =>
+      movie.title.toLowerCase().includes(query) || movie.categorie.toLowerCase().includes(query)
+    );
   }
 
   openMovieDetailsModal(movie: any) {
