@@ -1,0 +1,46 @@
+<div class="container-fluid p-0 d-flex h-100">
+  <div id="bdSidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-success text-white offcanvas-md offcanvas-start">
+    <a routerLink="/home" class="navbar-brand">Home Page</a>
+    <hr>
+    <ul class="mynav nav nav-pills flex-column mb-auto">
+      <li class="nav-item mb-1">
+        <a routerLinkActive="active" routerLink="categories/all-categories">
+          <i class="fa fa-folder"></i>
+          Categories
+        </a>
+
+      </li>
+      <li class="nav-item mb-1">
+        <a routerLinkActive="active" routerLink="movies/all-movies">
+          <i class="fa fa-film"></i>
+          Movies
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="bg-light flex-fill">
+    <div class="p-2 d-md-none d-flex text-white bg-success">
+      <a href="#" class="text-white" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div class="content">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <button *ngIf="isEditCategorieOrCategorieDetailsPage()" type="button" class="btn btn-danger" (click)="goBack()">Back</button>
+          <button *ngIf="isEditMovieOrMovieDetailsPage()" type="button" class="btn btn-danger" (click)="goBck()">Back</button>
+        </div>
+        <div>
+          <a routerLink="login" class="no-decoration btn btn-danger"  (click)="logout()">Log out</a>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

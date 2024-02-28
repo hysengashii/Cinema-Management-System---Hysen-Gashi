@@ -1,0 +1,5 @@
+.custom-select-sm {
+  width: 100%; /* Make the select element full width */
+  font-size: 14px; /* Increase font size for better readability on mobile */
+  padding: 8px; /* Add padding for spacing */
+}
