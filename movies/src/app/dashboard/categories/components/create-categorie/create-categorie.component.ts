@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CategoriesService } from '../../categories-service';
 
 @Component({
@@ -8,17 +9,24 @@ import { CategoriesService } from '../../categories-service';
   styleUrls: ['./create-categorie.component.css']
 })
 export class CreateCategorieComponent implements OnInit {
-  categorie: any = {};
+  categorieForm!: FormGroup;
 
-  constructor(private categoriesService: CategoriesService, private router: Router) { }
+  constructor(
+    private categoriesService: CategoriesService,
+    private router: Router,
+    private formBuilder: FormBuilder 
+  ) {}
 
   ngOnInit(): void {
+    this.categorieForm = this.formBuilder.group({
+      name: ['', Validators.required]
+    });
   }
 
   onSubmit() {
     try {
-      this.categoriesService.addCategorie(this.categorie);
-      this.categorie = {};
+      this.categoriesService.addCategorie(this.categorieForm.value);
+      this.categorieForm.reset();
       alert('Categorie added successfully!');
       this.router.navigate(['/categories/all-categories']);
     } catch (error) {

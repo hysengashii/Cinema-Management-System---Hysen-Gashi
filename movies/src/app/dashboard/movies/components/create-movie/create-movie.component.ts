@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; // Import Router module
+import { Router } from '@angular/router';
 import { MoviesService } from '../../movies-service';
+
 
 @Component({
   selector: 'app-create-movie',
@@ -11,10 +12,9 @@ export class CreateMovieComponent implements OnInit {
   movie: any = {};
   categories: string[] = [];
 
-  constructor(private moviesService: MoviesService, private router: Router) { } 
+  constructor(private moviesService: MoviesService, private router: Router) { }
 
   ngOnInit(): void {
-    // Fetch categories when component initializes
     this.categories = this.moviesService.getCategories();
   }
 
