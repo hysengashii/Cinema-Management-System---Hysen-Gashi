@@ -24,12 +24,12 @@
         <tr *ngFor="let categorie of categorieList">
           <td class="col-9">{{ categorie.name }}</td>
           <td class="col-3 text-right">
-            <a [routerLink]="'/categories/edit-categorie/' + categorie.id" [queryParams]="{ categorieId: categorie.id }" class="btn btn-success">
-              <i class="fa fa-pencil"></i> Edit
+            <a [routerLink]="'/categories/edit-categorie/' + categorie.id" [queryParams]="{ categorieId: categorie.id }" >
+              <i class="fa fa-pencil green p-2 pointer"></i>
             </a>
-            <button class="btn btn-danger" (click)="deleteCategorie(categorie)">
-              <i class="fa fa-trash"></i> Delete
-            </button>
+            <i class="fa fa-trash text-danger"(click)="deleteCategorie(categorie)" style="cursor: pointer;">
+            </i>
+
           </td>
         </tr>
       </ng-container>

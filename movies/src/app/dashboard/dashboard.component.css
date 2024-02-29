@@ -35,9 +35,9 @@
   overflow: auto;
   height: 100%;
   }
-  
+
   @media (max-width: 576px) {
     .offcanvas-start {
-      width: 70%;
+      width: 50%;
     }
   }
